@@ -2,3 +2,5 @@ st
 st.o
 x.o
 st-0.8.3.tar.gz
+*.orig
+*.rej
