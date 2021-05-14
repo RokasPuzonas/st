@@ -110,7 +110,7 @@ float alpha = 0.9;
 
 /* Terminal colors (16 first used in escape sequence) */
 static const char *colorname[] = {
-	"#282828", /* hard contrast: #1d2021 / soft contrast: #32302f */
+	"#282828",
 	"#cc241d",
 	"#98971a",
 	"#d79921",
@@ -127,6 +127,11 @@ static const char *colorname[] = {
 	"#d3869b",
 	"#8ec07c",
 	"#ebdbb2",
+
+
+	[256] = "#282828",
+	[257] = "#ebdbb2",
+	[258] = "#ebdbb2",
 };
 
 
@@ -134,10 +139,10 @@ static const char *colorname[] = {
  * Default colors (colorname index)
  * foreground, background, cursor, reverse cursor
  */
-unsigned int defaultfg = 15;
-unsigned int defaultbg = 0;
-unsigned int defaultcs = 15;
-unsigned int defaultrcs = 0;
+unsigned int defaultbg = 256;
+unsigned int defaultfg = 257;
+unsigned int defaultcs = 258;
+unsigned int defaultrcs = 256;
 
 /*
  * Default shape of cursor
@@ -174,6 +179,41 @@ static unsigned int defaultattr = 11;
  * modifier, set to 0 to not use it.
  */
 static uint forcemousemod = ShiftMask;
+
+/*
+ * Xresources preferences to load at startup
+ */
+ResourcePref resources[] = {
+	{ "font",         STRING,  &font },
+	{ "color0",       STRING,  &colorname[0] },
+	{ "color1",       STRING,  &colorname[1] },
+	{ "color2",       STRING,  &colorname[2] },
+	{ "color3",       STRING,  &colorname[3] },
+	{ "color4",       STRING,  &colorname[4] },
+	{ "color5",       STRING,  &colorname[5] },
+	{ "color6",       STRING,  &colorname[6] },
+	{ "color7",       STRING,  &colorname[7] },
+	{ "color8",       STRING,  &colorname[8] },
+	{ "color9",       STRING,  &colorname[9] },
+	{ "color10",      STRING,  &colorname[10] },
+	{ "color11",      STRING,  &colorname[11] },
+	{ "color12",      STRING,  &colorname[12] },
+	{ "color13",      STRING,  &colorname[13] },
+	{ "color14",      STRING,  &colorname[14] },
+	{ "color15",      STRING,  &colorname[15] },
+	{ "background",   STRING,  &colorname[256] },
+	{ "foreground",   STRING,  &colorname[257] },
+	{ "cursorColor",  STRING,  &colorname[258] },
+	//{ "termname",     STRING,  &termname },
+	{ "shell",        STRING,  &shell },
+	//{ "xfps",         INTEGER, &xfps },
+	//{ "actionfps",    INTEGER, &actionfps },
+	{ "blinktimeout", INTEGER, &blinktimeout },
+	//{ "bellvolume",   INTEGER, &bellvolume },
+	{ "tabspaces",    INTEGER, &tabspaces },
+	{ "cwscale",      FLOAT,   &cwscale },
+	{ "chscale",      FLOAT,   &chscale },
+};
 
 /*
  * Internal mouse shortcuts.
